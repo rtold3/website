@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Household Essentials - Our Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #333;
+            color: white;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .product-category {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-image {
+            max-width: 150px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-button {
+            background-color: #f80808;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            margin: 3px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .product-button:hover {
+            background-color: #cc0000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <section class="product-category">
+        <h2 class="category-title">Cooking Equipment</h2>
+        <!--product-card-->
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 1" class="product-image">
+                <h3>Oven Model 1</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model 1 Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model 1')">Get Price</button>
+            </div>
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 2" class="product-image">
+                <h3>Oven Model 2</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model 2 Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model 2')">Get Price</button>
+            </div>
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 3" class="product-image">
+                <h3>Oven Model 3</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model 45')">Get Price</button>
+            </div>
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 4" class="product-image">
+                <h3>Oven Model 4</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model 4 Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model sita')">Get Price</button>    <!--inquiry name-->
+
+            </div>
+        </div>
+        <!--product-card-->
+
+        
+    </section>
+
+    <section class="product-category">
+        <h2 class="category-title">Ovens</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 1" class="product-image">
+                <h3>Oven Model 1</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model 1 Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model 1')">Get Price</button>
+            </div>
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 2" class="product-image">
+                <h3>Oven Model 2</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model 2 Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model 2')">Get Price</button>
+            </div>
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 3" class="product-image">
+                <h3>Oven Model 3</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model 45')">Get Price</button>
+            </div>
+            <div class="product-card">
+                <img src="ovens.png" alt="Oven 4" class="product-image">
+                <h3>Oven Model 4</h3>
+                <button class="product-button" onclick="openSpecsModal('Oven Model 4 Specifications')">View Specs</button>
+                <button class="product-button" onclick="openPriceModal('Oven Model sita')">Get Price</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Specs Modal -->
+    <div id="specsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('specsModal')">&times;</span>
+            <p id="specsText"></p>
+        </div>
+    </div>
+
+    <!-- Price Modal -->
+    <div id="priceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('priceModal')">&times;</span>
+            <p>Would you like to inquire via:</p>
+            <button id="whatsappButton">WhatsApp</button>
+            <button id="gmailButton">Gmail</button>
+        </div>
+    </div>
+
+    <script>
+        function openSpecsModal(specs) {
+            document.getElementById('specsText').innerText = specs;
+            document.getElementById('specsModal').style.display = "block";
+        }
+
+        function openPriceModal(productName) {
+            document.getElementById('priceModal').style.display = "block";
+            // Update WhatsApp and Gmail links with the product name
+            document.getElementById('whatsappButton').onclick = function() {
+                window.location.href = 'https://wa.me/971553544627?text=Hi,%20I%20would%20like%20to%20inquire%20about%20the%20price%20of%20' + encodeURIComponent(productName) + '.';
+            };
+            document.getElementById('gmailButton').onclick = function() {
+                window.location.href = 'mailto:estimation@energysuppliesandservice.com?subject=Price%20Inquiry&body=Hi,%20I%20would%20like%20to%20inquire%20about%20the%20price%20of%20' + encodeURIComponent(productName) + '.';
+            };
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                closeModal('specsModal');
+                closeModal('priceModal');
+            }
+        }
+    </script>
+</body>
+</html>
