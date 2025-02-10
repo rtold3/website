@@ -181,6 +181,17 @@
         #cartItemsList button:hover {
             background-color: #000241;
         }
+
+        /* Quantity Controls */
+        #cartItemsList div div {
+            display: flex;
+            gap: 5px;
+        }
+
+        #cartItemsList span {
+            flex-grow: 1;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -266,13 +277,23 @@
         let cartItems = [];
         const cartCounter = document.getElementById('cartCounter');
 
-        // Add to Cart Functionality
+        // Modified Add to Cart Functionality
         function addToCart(productName) {
-            cartItems.push(productName);
-            cartCounter.textContent = cartItems.length;
+            const existingItem = cartItems.find(item => item.name === productName);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({ name: productName, quantity: 1 });
+            }
+            updateCartCounter();
         }
 
-        // Checkout Functionality
+        function updateCartCounter() {
+            const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+            cartCounter.textContent = totalItems;
+        }
+
+        // Modified Checkout Functionality
         function openCheckoutModal() {
             if (cartItems.length === 0) {
                 alert('Your cart is empty!');
@@ -285,27 +306,41 @@
 
             cartItems.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
-                itemDiv.textContent = item;
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'Remove';
-                removeButton.className = 'product-button';
-                removeButton.onclick = () => removeItem(index);
-                itemDiv.appendChild(removeButton);
+                itemDiv.innerHTML = `
+                    <span>${item.name} (${item.quantity})</span>
+                    <div>
+                        <button onclick="adjustQuantity(${index}, -1)">-</button>
+                        <button onclick="adjustQuantity(${index}, 1)">+</button>
+                        <button onclick="removeItem(${index})">Remove</button>
+                    </div>
+                `;
                 cartItemsList.appendChild(itemDiv);
             });
 
             document.getElementById('checkoutModal').style.display = 'block';
         }
 
+        function adjustQuantity(index, change) {
+            const item = cartItems[index];
+            item.quantity += change;
+
+            if (item.quantity < 1) {
+                cartItems.splice(index, 1);
+            }
+
+            updateCartCounter();
+            openCheckoutModal(); // Refresh the checkout modal
+        }
+
         function removeItem(index) {
             cartItems.splice(index, 1);
-            cartCounter.textContent = cartItems.length;
+            updateCartCounter();
             openCheckoutModal(); // Refresh the checkout modal
         }
 
         function proceedToCheckout() {
             closeModal('checkoutModal');
-            const productList = cartItems.join(', ');
+            const productList = cartItems.map(item => `${item.name} (${item.quantity})`).join(', ');
             const inquiryMessage = `Hi, I would like to inquire about the following products: ${productList}.`;
 
             document.getElementById('whatsappButton').href =
