@@ -44,7 +44,7 @@
             position: relative;
             flex-grow: 1;
             max-width: 300px;
-            margin-left: 1rem;
+            margin-left: -38rem;
         }
 
         #searchInput {
@@ -247,17 +247,22 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
+        <ul class="nav-left">
         </ul>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search products...">
-            <div class="suggestions-box" id="suggestionsBox"></div>
+        <div class="nav-center">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" onclick="openCheckoutModal()">Checkout <span id="cartCounter" class="cart-counter">0</span></a></li>
+            </ul>
         </div>
-        <ul>
-            <li><a href="#" onclick="openCheckoutModal()">Checkout <span id="cartCounter" class="cart-counter">0</span></a></li>
-        </ul>
+        <div class="nav-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <div class="suggestions-box" id="suggestionsBox"></div>
+            </div>
+        </div>
     </nav>
+    
 
     <section class="product-category">
         <h2 class="category-title">Cooking Equipment</h2>
